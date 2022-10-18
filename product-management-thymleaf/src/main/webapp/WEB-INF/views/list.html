@@ -14,6 +14,10 @@
         <span th:text="${success}"></span>
     </div>
 </div>
+<form th:action="@{/products/search}" class="form">
+    <input type="text" name="name">
+    <input type="submit", value="Search">
+</form>
 <table id="customers">
     <thead>
     <tr>

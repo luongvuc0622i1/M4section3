@@ -47,13 +47,14 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product findByName(String name) {
-        int index = -1;
-        for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getName().equals(name)) {
-                index = i;
+    public List<Product> findByName(String name) {
+        List<Product> products = findAll();
+        List<Product> productList = new ArrayList<>();
+        for (Product product : products) {
+            if (product.getName().toLowerCase().contains(name.toLowerCase())) {
+                productList.add(product);
             }
         }
-        return products.get(index);
+        return productList;
     }
 }
