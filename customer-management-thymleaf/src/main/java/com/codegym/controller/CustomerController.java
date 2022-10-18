@@ -52,4 +52,24 @@ public class CustomerController {
         redirect.addFlashAttribute("success", "Edited customer successfully!");
         return "redirect:/customer";
     }
+
+    @GetMapping("/{id}/delete")
+    public String delete(@PathVariable int id, Model model) {
+        model.addAttribute("customer", customerService.findById(id));
+        return "/delete";
+    }
+
+
+    @PostMapping("/delete")
+    public String delete(Customer customer, RedirectAttributes redirect) {
+        customerService.remove(customer.getId());
+        redirect.addFlashAttribute("success", "Removed customer successfully!");
+        return "redirect:/customer";
+    }
+
+    @GetMapping("/{id}/view")
+    public String view(@PathVariable int id, Model model) {
+        model.addAttribute("customer", customerService.findById(id));
+        return "/view";
+    }
 }
